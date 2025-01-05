@@ -3,12 +3,44 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>샘플 구조 작업</title>
+    <title>샘플 구조 작업업</title>
     <script src='https://cdn.tailwindcss.com'></script>
+
+    <!--다크모드를 위한 cdn 추가-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
     <!--상단에는 헤더, 중단에는 main contents 영역, 하단에는 footer-->
-    <header class="bg-gray-300 w-full h-20"></header>
+    <header class="sticky top-0 bg-opacity-90 backdrop-blur-lg">
+        <!--뒤에 것은 스크롤 시 블러 효과 주는 것-->
+        <nav class="container max-w-4xl mx-auto px-6 py-3 flex justify-between items-center"> <!--양 옆으로 요소 밀고, 수직 정렬 위해items-center 정렬-->
+            <div class="flex items-center space-x-4"> <!--정렬 맞춰주는 코드, 공간을 주는 게 space-->
+                <h1 class="text-2xl font-bold">정기획</h1>
+                <p class="text-sm text-gray-500 dark:text-gray-300">풀스택 기획자</p>
+            </div>
+
+            <div class="flex items-center gap-x-6"> <!--각 요소간 정렬 맞추기, 간격 설정-->
+                <a href="#home" class="hover:text-blue-500 transition-colors">홈</a> <!--메뉴가 hover 되었을 때 효과 변경 작업, 트랜지션도 적용-->
+
+                <a href="#about" class="hover:text-blue-500 transition-colors">소개</a> <!--hover 시 청색으로 효과 주기-->
+
+                <a href="#skills" class="hover:text-blue-500 transition-colors">기술</a>
+
+                <a href="#projects" class="hover:text-blue-500 transition-colors">프로젝트</a>
+
+                <a href="#contact" class="hover:text-blue-500 transition-colors">연락처</a>
+
+                <button class="p-2 w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none focus:ring focus:ring-blue-500"> <!--포커싱 되었을 때 적용되는 ui 링 효과를 위한 추가-->
+                    <i class="fas fa-moon text-gray-700 dark:text-yellow-400"></i> <!--fas fa-moon은 아이콘 클래스-->
+                </button>
+            </div>
+            
+
+        </nav>
+    </header>
+
+
+
     <main class="bg-gray-200 container max-w-4xl mx-auto px-6 py-12">
         <!--Home Section-->
         <section class="bg-red-200 h-60"></section>
