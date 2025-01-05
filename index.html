@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang='ko' class="dark"> <!--수동으로 만들기 위해서 dark를 클래스에 넣어준다.-->
+<html lang='ko'> <!--이제 다시 dark 제거-->
 
 <head>
     <meta charset='UTF-8'>
@@ -89,6 +89,7 @@
                 <a href="#contact" class="hover:text-blue-500 transition-colors">연락처</a>
 
                 <button
+                    id="darkModeToggle"
                     class="p-2 w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none focus:ring focus:ring-blue-500">
                     <!--포커싱 되었을 때 적용되는 ui 링 효과를 위한 추가-->
                     <i class="fas fa-moon text-gray-700 dark:text-yellow-400"></i> <!--fas fa-moon은 아이콘 클래스 다크모드에 맞게 색상 지정함 text-gray-700 dark:text-yellow-400-->
@@ -724,6 +725,78 @@
         </div>
         <!--다크모드용 세팅-->
     </footer>
+
+    <script>
+        // 다크모드 초기화 함수: 저장된 테마 정보를 읽어서 기본값으로 설정
+        function initialTheme() {
+            const darkModeToggleIcon = document
+              .getElementById('darkModeToggle') // 다크 모드 토글 버튼의 ID로 요소를 선택
+              .querySelector('i'); // 해당 버튼 내부의 아이콘 요소 선택
+    
+            // 로컬 스토리지에 저장된 테마 정보가 없거나 'dark'로 설정되어 있는 경우
+            if (!localStorage.theme || localStorage.theme === 'dark') {
+                document.documentElement.classList.add('dark'); // HTML 루트 요소에 'dark' 클래스를 추가 (다크 모드 활성화)
+                localStorage.theme = 'dark'; // 로컬 스토리지에 테마를 'dark'로 저장
+                darkModeToggleIcon.className = 'fas fa-sun text-yellow-400'; // 토글 버튼 아이콘을 '해 모양'으로 변경하고 노란색 스타일 적용
+            } else {
+                document.documentElement.classList.remove('dark'); // HTML 루트 요소에서 'dark' 클래스 제거 (라이트 모드 활성화)
+                darkModeToggleIcon.className = 'fas fa-moon text-gray-700'; // 토글 버튼 아이콘을 '달 모양'으로 변경하고 회색 스타일 적용
+            }
+        }
+    
+        // 다크모드 토글 함수: 버튼을 클릭할 때 다크 모드와 라이트 모드 전환
+        function toggleDarkMode() {
+            const darkModeToggleIcon = document
+              .getElementById('darkModeToggle') // 다크 모드 토글 버튼 선택
+              .querySelector('i'); // 해당 버튼 내부의 아이콘 요소 선택
+    
+            // 현재 HTML 루트 요소에 'dark' 클래스가 포함되어 있는지 확인
+            if (document.documentElement.classList.contains('dark')) {
+                // 다크 모드 활성 상태일 경우
+                document.documentElement.classList.remove('dark'); // 다크 모드 비활성화
+                localStorage.theme = 'light'; // 로컬 스토리지에 테마를 'light'로 저장
+                darkModeToggleIcon.className = 'fas fa-moon text-gray-700'; // 아이콘을 '달 모양'으로 변경하고 회색 스타일 적용
+            } else {
+                // 다크 모드가 비활성 상태일 경우
+                document.documentElement.classList.add('dark'); // 다크 모드 활성화
+                localStorage.theme = 'dark'; // 로컬 스토리지에 테마를 'dark'로 저장
+                darkModeToggleIcon.className = 'fas fa-sun text-yellow-400'; // 아이콘을 '해 모양'으로 변경하고 노란색 스타일 적용
+            }
+        }
+    
+        // 다크 모드 토글 버튼에 클릭 이벤트 리스너 추가
+        document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
+        // 버튼 클릭 시 `toggleDarkMode` 함수 실행
+    
+        // 페이지 로드 시 초기 테마 설정
+        initialTheme(); 
+        // 저장된 테마 정보를 기반으로 페이지 로드 시 다크/라이트 모드를 초기화
+
+    </script>
+
 </body>
 
 </html>
+
+<!-- 1. initialTheme()
+
+    페이지 로드 시 로컬 스토리지(localStorage)에 저장된 테마 정보를 읽어와 다크 모드(dark) 또는 라이트 모드(light)를 활성화한다.
+    테마가 설정되지 않은 경우 기본값을 dark로 설정한다.
+
+    2. toggleDarkMode()
+    사용자가 버튼을 클릭할 때 실행된다.
+    현재 테마 상태에 따라 다크 모드 활성화(dark 클래스 추가) 또는 비활성화(dark 클래스 제거)를 수행한다다.
+    아이콘과 스타일을 다크 모드/라이트 모드에 맞게 전환한다다.
+    현재 상태를 localStorage에 저장하여 이후에도 유지되도록 한다.
+
+
+    3. 이벤트 리스너
+    버튼 ID가 darkModeToggle인 요소에 클릭 이벤트 리스너를 추가하여 toggleDarkMode 함수를 연결한다.
+    
+    4. localStorage
+    브라우저 로컬 스토리지를 활용하여 테마 상태를 저장한다.
+    브라우저를 새로고침하거나 다시 열어도 사용자가 마지막으로 설정한 테마 상태를 유지한다.
+    
+    5.아이콘 상태 전환
+    - 다크 모드: 해 모양 아이콘(fas fa-sun)과 노란색 텍스트(text-yellow-400) 적용.
+    - 라이트 모드: 달 모양 아이콘(fas fa-moon)과 회색 텍스트(text-gray-700) 적용.-->
