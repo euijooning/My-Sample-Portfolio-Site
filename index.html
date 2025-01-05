@@ -11,15 +11,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <!-- 우선 다크모드를 수동으로 적용하기 위해서는 다크모드의 기본 모드가 미디어이기 때문에 셀렉터로 변경을 해줘야 한다. -->
-     <!--다크모드를 위한 슬렉터를 먼저 추가해줘야 한다.-->
+    <!--다크모드를 위한 슬렉터를 먼저 추가해줘야 한다.-->
     <script>
-       tailwind.config = {
-         darkMode: 'selector',
+        tailwind.config = {
+            darkMode: 'selector',
         };
     </script>
 </head>
 
-<body class="dark:bg-gray-900 dark:text-white bg-white text-black min-h-screen transition-colors duration-300"> <!--다크모드와 일반모드일때 색상을 다르게 설정-->
+<body class="dark:bg-gray-900 dark:text-white bg-white text-black min-h-screen transition-colors duration-300">
+    <!--다크모드와 일반모드일때 색상을 다르게 설정-->
     <!--상단에는 헤더, 중단에는 main contents 영역, 하단에는 footer-->
     <header class="sticky top-0 bg-opacity-90 backdrop-blur-lg">
         <!-- 
@@ -66,7 +67,7 @@
                 -->
             </div>
 
-            <div class="flex items-center gap-x-6"> <!--각 요소간 정렬 맞추기, 간격 설정-->
+            <div class="hidden md:flex items-center gap-x-6"> <!--각 요소간 정렬 맞추기, 간격 설정-->
                 <!-- 내비게이션 링크:
             - flex: Flexbox 사용
             - items-center: 세로축 중앙 정렬
@@ -88,14 +89,21 @@
 
                 <a href="#contact" class="hover:text-blue-500 transition-colors">연락처</a>
 
-                <button
-                    id="darkModeToggle"
+                <button id="darkModeToggle"
                     class="p-2 w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none focus:ring focus:ring-blue-500">
                     <!--포커싱 되었을 때 적용되는 ui 링 효과를 위한 추가-->
-                    <i class="fas fa-moon text-gray-700 dark:text-yellow-400"></i> <!--fas fa-moon은 아이콘 클래스 다크모드에 맞게 색상 지정함 text-gray-700 dark:text-yellow-400-->
+                    <i class="fas fa-moon text-gray-700 dark:text-yellow-400"></i>
+                    <!--fas fa-moon은 아이콘 클래스 다크모드에 맞게 색상 지정함 text-gray-700 dark:text-yellow-400-->
                 </button>
 
-                <!-- 
+            </div>
+            <!--햄버거 버튼 추가-->
+            <button id="menuToggle"
+                class="md:hidden p-2 text-gray-700 dark:text-white"><!--md:hidden은 디폴트로 pc화면일 때는 안 보여야 하기 때문에-->
+                <i class="fas fa-bars text-2xl"></i> <!--햄버거 아이콘-->
+            </button>
+
+            <!-- 
                 다크 모드 전환 버튼:
                 - p-2: 내부 여백 2단위
                 - w-10, h-10: 너비와 높이를 각각 10단위(40px)로 설정
@@ -107,7 +115,7 @@
                 - focus:ring-blue-500: 링 효과 색상을 파란색으로 설정
                 -->
 
-                <!-- 
+            <!-- 
                 아이콘:
                 - fas fa-moon: Font Awesome의 달 모양 아이콘
                 - text-gray-700: 아이콘 색상을 짙은 회색으로 설정
@@ -118,6 +126,108 @@
 
         </nav>
     </header>
+
+
+    <!--사이드바 구현-->
+    <!--메뉴가 닫혔다 열렸다 하기 위해서, 실제로는 이런 메뉴가 디폴트로 해당 X축 길이만큼 옆으로(->) 이동해 있는 것 
+    그리고 메뉴를 열었을 때 이 메뉴가 다시 X축 길이만큼 왼쪽으로 오는 것임.
+    이 때, 트랜지션 효과에 의해 이 메뉴가 왼쪽으로 이동할 때 부드럽게 이동하게 되는 것.-->
+
+    <!--구현을 위한 코드 추가가-->
+    <aside id="mobileMenu"
+        class="block md:hidden fixed right-0 inset-y-0 w-64 bg-white dark:bg-gray-800 shadow-lg translate-x-full transition-transform duration-300 z-20">
+    <!-- 
+    모바일 메뉴 컨테이너:
+    - id="mobileMenu": JavaScript에서 선택 및 조작 가능하도록 ID 부여
+    - block: 기본적으로 보이는 블록 요소
+    - md:hidden: 화면 크기가 md(768px 이상)일 때는 숨김
+    - fixed: 화면에서 고정 위치, 스크롤해도 항상 동일한 위치에 유지
+    - right-0: 화면의 오른쪽 끝에 배치
+    - inset-y-0: 세로 방향으로 위, 아래 모두 0으로 설정 (전체 높이를 차지)
+    - w-64: 너비를 16rem(256px)로 설정
+    - bg-white: 배경색을 흰색으로 설정
+    - dark:bg-gray-800: 다크 모드에서 배경색을 짙은 회색으로 설정
+    - shadow-lg: 큰 그림자 효과 추가
+    - translate-x-full: X축 방향으로 100% 이동 (기본적으로 화면 밖으로 숨김)
+    - transition-transform: `transform` 속성 변화에 부드러운 전환 효과 적용
+    - duration-300: 전환 효과의 지속 시간을 300ms로 설정
+    - z-20: 다른 요소 위에 표시되도록 높은 z-index 설정
+     -->
+
+        <!-- 닫기 버튼 -->
+        <button id="closeMenu" class="p-2 m-4 text-gray-700 dark:text-white">
+            <!-- 
+    닫기 버튼:
+    - id="closeMenu": JavaScript에서 이벤트 리스너를 연결하기 위한 ID
+    - p-2: 내부 여백을 2단위로 설정
+    - m-4: 외부 여백을 4단위로 설정
+    - text-gray-700: 닫기 버튼의 아이콘 색상을 짙은 회색으로 설정
+    - dark:text-white: 다크 모드에서 아이콘 색상을 흰색으로 설정
+    -->
+            <i class="fas fa-times text-2xl"></i>
+            <!-- 
+    닫기 버튼 아이콘:
+    - fas fa-times: Font Awesome에서 'X' 아이콘 사용
+    - text-2xl: 텍스트 크기를 2xl(24px)로 설정
+    -->
+        </button>
+
+        <!-- 내비게이션 링크 -->
+        <nav class="flex flex-col space-y-4 mt-10 px-6">
+            <!-- 
+    내비게이션 래퍼:
+    - flex: Flexbox 레이아웃 사용
+    - flex-col: 자식 요소를 세로 방향으로 정렬
+    - space-y-4: 자식 요소 간의 수직 간격을 4단위로 설정
+    - mt-10: 위쪽 여백을 10단위로 설정
+    - px-6: 좌우 내부 여백을 6단위로 설정
+    -->
+
+            <a href="#home" class="hover:text-blue-500 transition-colors">홈</a>
+            <!-- 
+    '홈' 링크:
+    - href="#home": ID가 'home'인 섹션으로 이동
+    - hover:text-blue-500: 마우스 오버 시 텍스트 색상을 파란색으로 변경
+    - transition-colors: 색상 변화에 부드러운 전환 효과 추가
+    -->
+
+            <a href="#about" class="hover:text-blue-500 transition-colors">소개</a>
+            <a href="#skills" class="hover:text-blue-500 transition-colors">기술</a>
+            <a href="#projects" class="hover:text-blue-500 transition-colors">프로젝트</a>
+            <a href="#contact" class="hover:text-blue-500 transition-colors">연락처</a>
+            <!-- 
+    위의 모든 링크:
+    - 공통 스타일과 동작:
+      - 마우스 오버 시 파란색으로 텍스트 색상 변경
+      - 특정 섹션(#about, #skills, #projects, #contact)으로 이동
+    -->
+
+            <!-- 다크 모드 토글 버튼 -->
+            <button id="darkModeToggleMobile"
+                class="p-2 w-full rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none focus:ring focus:ring-blue-500">
+                <!-- 
+      다크 모드 토글 버튼:
+      - id="darkModeToggleMobile": 모바일 환경에서 다크 모드 토글 이벤트를 연결하기 위한 ID
+      - p-2: 내부 여백을 2단위로 설정
+      - w-full: 버튼의 너비를 100%로 설정 (화면 전체 너비에 맞춤)
+      - rounded-full: 버튼을 완전한 원형으로 설정
+      - bg-gray-200: 배경색을 밝은 회색으로 설정
+      - dark:bg-gray-700: 다크 모드에서 배경색을 짙은 회색으로 설정
+      - focus:outline-none: 포커스 시 기본 외곽선을 제거
+      - focus:ring: 포커스 시 외곽선 효과 추가
+      - focus:ring-blue-500: 포커스 시 외곽선 색상을 파란색으로 설정
+      -->
+
+                <i class="fas fa-moon text-gray-700 dark:text-yellow-400"></i>
+                <!-- 
+      다크 모드 토글 아이콘:
+      - fas fa-moon: Font Awesome에서 '달' 아이콘 사용
+      - text-gray-700: 기본 아이콘 색상을 짙은 회색으로 설정
+      - dark:text-yellow-400: 다크 모드에서 아이콘 색상을 노란색으로 설정
+      -->
+            </button>
+        </nav>
+    </aside>
 
 
 
@@ -479,7 +589,7 @@
 
                             <a href="#"
                                 class="text-sm bg-gray-800 dark:bg-gray-300 text-white dark:text-gray-800 px-3 py-1 rounded-md">GitHub</a>
-                                <!--여기도 다크모드용 세팅-->
+                            <!--여기도 다크모드용 세팅-->
                             <!-- 
                             GitHub 버튼:
                             - text-sm: 텍스트 크기를 sm(14px)로 설정
@@ -721,7 +831,7 @@
     </main>
     <footer class="bg-gray-100 dark:bg-gray-800 py-6">
         <div class="container max-w-4xl mx-auto px-6 text-center">
-          <p>&copy; 2024 정기획. All rights reserved.</p>
+            <p>&copy; 2024 정기획. All rights reserved.</p>
         </div>
         <!--다크모드용 세팅-->
     </footer>
@@ -730,9 +840,9 @@
         // 다크모드 초기화 함수: 저장된 테마 정보를 읽어서 기본값으로 설정
         function initialTheme() {
             const darkModeToggleIcon = document
-              .getElementById('darkModeToggle') // 다크 모드 토글 버튼의 ID로 요소를 선택
-              .querySelector('i'); // 해당 버튼 내부의 아이콘 요소 선택
-    
+                .getElementById('darkModeToggle') // 다크 모드 토글 버튼의 ID로 요소를 선택
+                .querySelector('i'); // 해당 버튼 내부의 아이콘 요소 선택
+
             // 로컬 스토리지에 저장된 테마 정보가 없거나 'dark'로 설정되어 있는 경우
             if (!localStorage.theme || localStorage.theme === 'dark') {
                 document.documentElement.classList.add('dark'); // HTML 루트 요소에 'dark' 클래스를 추가 (다크 모드 활성화)
@@ -743,13 +853,13 @@
                 darkModeToggleIcon.className = 'fas fa-moon text-gray-700'; // 토글 버튼 아이콘을 '달 모양'으로 변경하고 회색 스타일 적용
             }
         }
-    
+
         // 다크모드 토글 함수: 버튼을 클릭할 때 다크 모드와 라이트 모드 전환
         function toggleDarkMode() {
             const darkModeToggleIcon = document
-              .getElementById('darkModeToggle') // 다크 모드 토글 버튼 선택
-              .querySelector('i'); // 해당 버튼 내부의 아이콘 요소 선택
-    
+                .getElementById('darkModeToggle') // 다크 모드 토글 버튼 선택
+                .querySelector('i'); // 해당 버튼 내부의 아이콘 요소 선택
+
             // 현재 HTML 루트 요소에 'dark' 클래스가 포함되어 있는지 확인
             if (document.documentElement.classList.contains('dark')) {
                 // 다크 모드 활성 상태일 경우
@@ -763,13 +873,38 @@
                 darkModeToggleIcon.className = 'fas fa-sun text-yellow-400'; // 아이콘을 '해 모양'으로 변경하고 노란색 스타일 적용
             }
         }
-    
+
         // 다크 모드 토글 버튼에 클릭 이벤트 리스너 추가
         document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
         // 버튼 클릭 시 `toggleDarkMode` 함수 실행
-    
+
+
+
+        //--------------------------
+        // 모바일 메뉴 DOM 요소 선택
+        const mobileMenu = document.getElementById('mobileMenu');
+        // id가 'mobileMenu'인 요소를 선택하여 변수에 저장 (모바일 메뉴 컨테이너)
+
+        // 모바일 메뉴 열기: 메뉴 토글 버튼 클릭 이벤트
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            // id가 'menuToggle'인 버튼에 클릭 이벤트 리스너 추가
+            mobileMenu.classList.toggle('translate-x-full');
+            // 모바일 메뉴 요소에 'translate-x-full' 클래스를 토글
+            // - 'translate-x-full': Tailwind CSS 클래스, 요소를 화면 밖으로 이동
+            // - 클래스가 있으면 제거하여 메뉴를 열고, 없으면 추가하여 메뉴를 닫음
+        });
+
+        // 모바일 메뉴 닫기: 메뉴 닫기 버튼 클릭 이벤트
+        document.getElementById('closeMenu').addEventListener('click', () => {
+            // id가 'closeMenu'인 버튼에 클릭 이벤트 리스너 추가
+            mobileMenu.classList.add('translate-x-full');
+            // 모바일 메뉴 요소에 'translate-x-full' 클래스를 강제로 추가
+            // - 메뉴를 닫기 위해 항상 화면 밖으로 이동시키는 효과
+        });
+
+
         // 페이지 로드 시 초기 테마 설정
-        initialTheme(); 
+        initialTheme();
         // 저장된 테마 정보를 기반으로 페이지 로드 시 다크/라이트 모드를 초기화
 
     </script>
