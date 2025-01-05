@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang='ko'>
+<html lang='ko' class="dark"> <!--수동으로 만들기 위해서 dark를 클래스에 넣어준다.-->
 
 <head>
     <meta charset='UTF-8'>
@@ -9,9 +9,17 @@
 
     <!--다크모드를 위한 cdn 추가-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- 우선 다크모드를 수동으로 적용하기 위해서는 다크모드의 기본 모드가 미디어이기 때문에 셀렉터로 변경을 해줘야 한다. -->
+     <!--다크모드를 위한 슬렉터를 먼저 추가해줘야 한다.-->
+    <script>
+       tailwind.config = {
+         darkMode: 'selector',
+        };
+    </script>
 </head>
 
-<body>
+<body class="dark:bg-gray-900 dark:text-white bg-white text-black min-h-screen transition-colors duration-300"> <!--다크모드와 일반모드일때 색상을 다르게 설정-->
     <!--상단에는 헤더, 중단에는 main contents 영역, 하단에는 footer-->
     <header class="sticky top-0 bg-opacity-90 backdrop-blur-lg">
         <!-- 
@@ -83,7 +91,7 @@
                 <button
                     class="p-2 w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none focus:ring focus:ring-blue-500">
                     <!--포커싱 되었을 때 적용되는 ui 링 효과를 위한 추가-->
-                    <i class="fas fa-moon text-gray-700 dark:text-yellow-400"></i> <!--fas fa-moon은 아이콘 클래스-->
+                    <i class="fas fa-moon text-gray-700 dark:text-yellow-400"></i> <!--fas fa-moon은 아이콘 클래스 다크모드에 맞게 색상 지정함 text-gray-700 dark:text-yellow-400-->
                 </button>
 
                 <!-- 
@@ -173,6 +181,7 @@
             - mb-4: 하단 여백 (4단위)
             -->
                 <p class="text-gray-600 dark:text-gray-400">
+                    <!--여기도 다크모드용 색 재지정 "text-gray-600 dark:text-gray-400"-->
                     저는 천재입니다. <br>
                     아니, 사실은 천재가 되고 싶습니다. <br>
                     조금만 공부해도 엄청나게 잘 하고 싶은 사람입니다.
@@ -232,6 +241,7 @@
 
                     <ul class="text-gray-800 dark:text-gray-300 leading-relaxed">
                         <!-- 
+                        여기도 다크모드용 세팅 다시함
                         리스트(교육 및 활동):
                         - text-gray-800: 텍스트 색상을 진한 회색으로 설정
                         - dark:text-gray-300: 다크 모드에서 밝은 회색으로 변경
@@ -301,6 +311,7 @@
         -->
                 <div
                     class="flex flex-col items-center bg-gray-100 dark:bg-gray-800 shadow-md rounded-lg p-4 hover:scale-105 transition-transform duration-300">
+                    <!--다크모드용 텍스트 색상 제적용-->
                     <!-- 
             기술 아이템 카드:
             - flex: Flexbox 레이아웃 사용
@@ -333,7 +344,7 @@
 
                 <div
                     class="flex flex-col items-center bg-gray-100 dark:bg-gray-800 shadow-md rounded-lg p-4 hover:scale-105 transition-transform duration-300">
-                    <i class="fa-brands fa-html5 text-4xl text-red-500 mb-1"></i>
+                    <i class="fa-brands fa-css3 text-4xl text-blue-500 mb-1"></i>
                     <h3 class="text-lg font-semibold">CSS3</h3>
                 </div>
 
@@ -390,6 +401,7 @@
                 <!-- 프로젝트 카드 -->
                 <article
                     class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
+                    <!--다크모드 적용을 위한 세팅-->
                     <!-- 
                     프로젝트 카드:
                     - bg-gray-100: 밝은 회색 배경
@@ -420,6 +432,7 @@
                         -->
 
                         <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">전자상거래 플랫폼</h3>
+                        <!--여기도 다크모드용 세팅 text-gray-800 dark:text-gray-100-->
                         <!-- 
                         프로젝트 제목:
                         - text-xl: 텍스트 크기를 xl(20px)로 설정
@@ -437,7 +450,9 @@
                             -->
 
                             <span
-                                class="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-md text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">React</span>
+                                class="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-md text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">
+                                React</span>
+                            <!--여기도 다크모드용 세팅 -->
                             <!-- 
                             기술 태그:
                             - bg-gray-200: 밝은 회색 배경
@@ -463,6 +478,7 @@
 
                             <a href="#"
                                 class="text-sm bg-gray-800 dark:bg-gray-300 text-white dark:text-gray-800 px-3 py-1 rounded-md">GitHub</a>
+                                <!--여기도 다크모드용 세팅-->
                             <!-- 
                             GitHub 버튼:
                             - text-sm: 텍스트 크기를 sm(14px)로 설정
@@ -603,6 +619,8 @@
 
                         <input type="text" id="name" name="name" required
                             class="dark:bg-gray-700 dark:border-gray-600 dark:text-white w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-500" />
+
+                        <!--다크모드용 세팅-->
                         <!-- 
                         이름 입력 필드:
                         - type="text": 텍스트 입력 필드
@@ -683,6 +701,7 @@
                         <i class="fa-brands fa-youtube"></i>
                         <span>Youtube</span>
                     </a>
+                    <!--다크모드용 세팅-->
 
                     <a href="#" target="_blank"
                         class="dark:text-gray-300 flex items-center space-x-2 text-gray-600 hover:text-blue-500 transition-colors">
@@ -703,6 +722,7 @@
         <div class="container max-w-4xl mx-auto px-6 text-center">
           <p>&copy; 2024 정기획. All rights reserved.</p>
         </div>
+        <!--다크모드용 세팅-->
     </footer>
 </body>
 
