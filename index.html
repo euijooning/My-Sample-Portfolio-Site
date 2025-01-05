@@ -280,20 +280,20 @@
             </div>
         </section>
         <section id="skills" class="mb-16">
-        <!-- 
+            <!-- 
         기술 섹션:
         - bg-green-200: 배경색을 연한 녹색으로 설정
         - h-60: 높이를 60단위(240px)로 설정
         -->
             <h2 class="text-3xl font-bold mb-6">기술</h2>
-        <!-- 
+            <!-- 
         섹션 제목:
         - text-3xl: 텍스트 크기를 3xl(30px)로 설정
         - font-bold: 굵은 글꼴 적용
         - mb-6: 하단 여백 6단위 설정
         -->
             <div class="grid grid-cols-3 gap-4">
-        <!-- 
+                <!-- 
         기술 아이템 래퍼:
         - grid: CSS Grid 레이아웃 사용
         - grid-cols-3: 3개의 열로 구성
@@ -301,7 +301,7 @@
         -->
                 <div
                     class="flex flex-col items-center bg-gray-100 dark:bg-gray-800 shadow-md rounded-lg p-4 hover:scale-105 transition-transform duration-300">
-            <!-- 
+                    <!-- 
             기술 아이템 카드:
             - flex: Flexbox 레이아웃 사용
             - flex-col: Flex 방향을 세로로 설정
@@ -316,7 +316,7 @@
             - duration-300: 전환 시간을 300ms로 설정
             -->
                     <i class="fa-brands fa-html5 text-4xl text-red-500 mb-1"></i>
-            <!-- 
+                    <!-- 
             아이콘:
             - fa-brands fa-html5: Font Awesome에서 HTML5 아이콘 사용
             - text-4xl: 텍스트 크기를 4xl(36px)로 설정
@@ -324,7 +324,7 @@
             - mb-1: 하단 여백 1단위 설정
             -->
                     <h3 class="text-lg font-semibold">HTML5</h3>
-                <!-- 
+                    <!-- 
                  기술 이름:
                 - text-lg: 텍스트 크기를 lg(18px)로 설정
                 - font-semibold: 중간 굵기의 글꼴 적용
@@ -362,12 +362,204 @@
                 </div>
             </div>
         </section>
-        <section class="bg-blue-200 h-60">
+
+        <section id="projects" class="mb-16">
+            <!-- 
+            프로젝트 섹션:
+            - id="projects": 앵커 태그로 이 섹션으로 이동 가능하도록 설정
+            - mb-16: 섹션 하단에 16단위(64px)의 여백 추가
+            -->
+        
             <h2 class="text-3xl font-bold mb-6">프로젝트</h2>
+            <!-- 
+            섹션 제목:
+            - text-3xl: 텍스트 크기를 3xl(30px)로 설정
+            - font-bold: 텍스트를 굵게 설정
+            - mb-6: 하단 여백을 6단위(24px)로 설정
+            -->
+        
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 
+                프로젝트 카드 컨테이너:
+                - grid: CSS Grid 레이아웃 사용
+                - grid-cols-1: 기본적으로 한 열로 구성
+                - md:grid-cols-2: 화면 크기가 md(768px 이상)일 때 두 열로 구성
+                - gap-6: 카드 간의 간격을 6단위(24px)로 설정
+                -->
+        
+                <!-- 프로젝트 카드 -->
+                <article class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
+                    <!-- 
+                    프로젝트 카드:
+                    - bg-gray-100: 밝은 회색 배경
+                    - dark:bg-gray-800: 다크 모드에서 짙은 회색 배경
+                    - rounded-lg: 모서리를 부드럽게 둥글게 처리
+                    - overflow-hidden: 내용이 카드 경계를 넘어가지 않도록 처리
+                    - shadow-lg: 그림자 효과 추가
+                    - hover:scale-105: 마우스 오버 시 1.05배 확대
+                    - transition-transform: 확대 효과에 부드러운 전환 추가
+                    - duration-300: 전환 효과를 300ms로 설정
+                    -->
+        
+                    <img src="https://plus.unsplash.com/premium_photo-1661290256778-3b821d52c514?q=80&w=600" alt="플랫폼 이미지" class="w-full h-48 object-cover" />
+                    <!-- 
+                    프로젝트 이미지:
+                    - src: 이미지 소스
+                    - alt="플랫폼 이미지": 대체 텍스트
+                    - w-full: 너비를 카드의 100%로 설정
+                    - h-48: 높이를 48단위(192px)로 설정
+                    - object-cover: 이미지를 비율을 유지하며 컨테이너에 맞춤
+                    -->
+        
+                    <div class="p-6">
+                        <!-- 
+                        프로젝트 설명 컨테이너:
+                        - p-6: 내부 여백을 6단위로 설정
+                        -->
+        
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">전자상거래 플랫폼</h3>
+                        <!-- 
+                        프로젝트 제목:
+                        - text-xl: 텍스트 크기를 xl(20px)로 설정
+                        - font-semibold: 텍스트를 중간 굵기로 설정
+                        - mb-4: 하단 여백을 4단위(16px)로 설정
+                        - text-gray-800: 기본 텍스트 색상을 어두운 회색으로 설정
+                        - dark:text-gray-100: 다크 모드에서 밝은 색상으로 설정
+                        -->
+        
+                        <div class="space-x-2 mb-4">
+                            <!-- 
+                            태그 래퍼:
+                            - space-x-2: 태그 간의 간격을 2단위(8px)로 설정
+                            - mb-4: 하단 여백 4단위 설정
+                            -->
+        
+                            <span class="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-md text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">React</span>
+                            <!-- 
+                            기술 태그:
+                            - bg-gray-200: 밝은 회색 배경
+                            - dark:bg-gray-700: 다크 모드에서 짙은 회색 배경
+                            - text-xs: 텍스트 크기를 xs(12px)로 설정
+                            - px-2, py-0.5: 수평 여백 8px, 수직 여백 2px
+                            - rounded-md: 모서리를 부드럽게 처리
+                            - text-gray-700: 텍스트 색상을 어두운 회색으로 설정
+                            - dark:text-gray-300: 다크 모드에서 밝은 색상 적용
+                            - border: 테두리 추가
+                            - dark:border-gray-600: 다크 모드에서 테두리 색상 설정
+                            -->
+                        </div>
+        
+                        <div class="flex justify-start space-x-2 mt-4">
+                            <!-- 
+                            버튼 래퍼:
+                            - flex: Flexbox 레이아웃
+                            - justify-start: 왼쪽 정렬
+                            - space-x-2: 버튼 간의 간격 2단위(8px) 설정
+                            - mt-4: 상단 여백 4단위 추가
+                            -->
+        
+                            <a href="#" class="text-sm bg-gray-800 dark:bg-gray-300 text-white dark:text-gray-800 px-3 py-1 rounded-md">GitHub</a>
+                            <!-- 
+                            GitHub 버튼:
+                            - text-sm: 텍스트 크기를 sm(14px)로 설정
+                            - bg-gray-800: 배경색 어두운 회색
+                            - dark:bg-gray-300: 다크 모드에서 밝은 회색 배경
+                            - text-white: 텍스트 색상을 흰색으로 설정
+                            - dark:text-gray-800: 다크 모드에서 텍스트를 어두운 회색으로 변경
+                            - px-3, py-1: 수평 여백 12px, 수직 여백 4px
+                            - rounded-md: 모서리를 둥글게 처리
+                            -->
+        
+                            <a href="#" class="text-sm bg-blue-600 text-white px-3 py-1 rounded-md">라이브 데모</a>
+                            <!-- 
+                            라이브 데모 버튼:
+                            - text-sm: 텍스트 크기를 sm(14px)로 설정
+                            - bg-blue-600: 배경색 파란색
+                            - text-white: 텍스트 색상을 흰색으로 설정
+                            - px-3, py-1: 수평 여백 12px, 수직 여백 4px
+                            - rounded-md: 모서리를 둥글게 처리
+                            -->
+                        </div>
+                    </div>
+                </article>
+                <!-- 프로젝트 2 -->
+                <article
+                    class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
+                    <img src="https://plus.unsplash.com/premium_photo-1661290256778-3b821d52c514?q=80&w=600"
+                        alt="플랫폼 이미지" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">전자상거래 플랫폼</h3>
+                        <div class="space-x-2 mb-4">
+                            <span
+                                class="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-md text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">React</span>
+                        </div>
+                        <span
+                            class="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-md text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">Node.js</span>
+                        <span
+                            class="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-md text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">Express</span>
+                        <span
+                            class="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-md text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">MongoDB</span>
+                        <div class="flex justify-start space-x-2 mt-4">
+                            <a href="#"
+                                class="text-sm bg-gray-800 dark:bg-gray-300 text-white dark:text-gray-800 px-3 py-1 rounded-md">GitHub</a>
+                            <a href="#" class="text-sm bg-blue-600 text-white px-3 py-1 rounded-md">라이브 데모</a>
+                        </div>
+                    </div>
+                </article>
+                <!-- 프로젝트 3 -->
+                <article
+                    class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
+                    <img src="https://plus.unsplash.com/premium_photo-1661290256778-3b821d52c514?q=80&w=600"
+                        alt="플랫폼 이미지" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">전자상거래 플랫폼</h3>
+                        <div class="space-x-2 mb-4">
+                            <span
+                                class="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-md text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">React</span>
+                        </div>
+                        <span
+                            class="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-md text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">Node.js</span>
+                        <span
+                            class="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-md text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">Express</span>
+                        <span
+                            class="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-md text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">MongoDB</span>
+                        <div class="flex justify-start space-x-2 mt-4">
+                            <a href="#"
+                                class="text-sm bg-gray-800 dark:bg-gray-300 text-white dark:text-gray-800 px-3 py-1 rounded-md">GitHub</a>
+                            <a href="#" class="text-sm bg-blue-600 text-white px-3 py-1 rounded-md">라이브 데모</a>
+                        </div>
+                    </div>
+                </article>
+                <!-- 프로젝트 2 -->
+                <article
+                    class="bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
+                    <img src="https://plus.unsplash.com/premium_photo-1661290256778-3b821d52c514?q=80&w=600"
+                        alt="플랫폼 이미지" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">전자상거래 플랫폼</h3>
+                        <div class="space-x-2 mb-4">
+                            <span
+                                class="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-md text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">React</span>
+                        </div>
+                        <span
+                            class="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-md text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">Node.js</span>
+                        <span
+                            class="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-md text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">Express</span>
+                        <span
+                            class="bg-gray-200 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-md text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">MongoDB</span>
+                        <div class="flex justify-start space-x-2 mt-4">
+                            <a href="#"
+                                class="text-sm bg-gray-800 dark:bg-gray-300 text-white dark:text-gray-800 px-3 py-1 rounded-md">GitHub</a>
+                            <a href="#" class="text-sm bg-blue-600 text-white px-3 py-1 rounded-md">라이브 데모</a>
+                        </div>
+                    </div>
+                </article>
+                </div>
         </section>
         <section class="bg-lime-200 h-60">
             <h2 class="text-3xl font-bold mb-6">연락처</h2>
         </section>
+
     </main>
     <footer class="bg-gray-400 w-full h-20"></footer>
 </body>
